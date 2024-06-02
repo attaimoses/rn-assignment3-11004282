@@ -1,65 +1,60 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView, Image } from 'react-native';
-import { Avatar, IconButton, Card } from 'react-native-paper';
-import { LinearGradient } from 'expo-linear-gradient';
+import { StyleSheet, Text, View, TextInput, ScrollView, Image, TouchableOpacity } from 'react-native';
 
 export default function App() {
   return (
-    <ScrollView style={styles.container}>
-      <LinearGradient
-        colors={['#f5f7fa', '#c3cfe2']}
-        style={styles.background}
-      >
-        <View style={styles.header}>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.header}>
+        <View>
           <Text style={styles.greeting}>Hello, Devs</Text>
-          <Avatar.Icon size={40} icon="account" style={styles.avatar} />
+          <Text style={styles.tasks}>14 tasks today</Text>
         </View>
-        <Text style={styles.taskCount}>14 tasks today</Text>
-        <View style={styles.searchContainer}>
-          <TextInput style={styles.searchInput} placeholder="Search" />
-          <IconButton
-            icon="filter-variant"
-            size={24}
-            style={styles.filterButton}
-          />
+        <Image source={require('./assets/person.png')} style={styles.avatar} />
+      </View>
+
+      <View style={styles.searchBar}>
+        <TextInput style={styles.searchInput} placeholder="Search" />
+        <TouchableOpacity style={styles.filterButton}>
+          <Image source={require('./assets/Group 2.png')} style={styles.filterIcon} />
+        </TouchableOpacity>
+      </View>
+
+      <Text style={styles.sectionTitle}>Categories</Text>
+      <View style={styles.categories}>
+        <View style={styles.category}>
+          <Image source={require('./assets/young woman working online.png')} style={styles.categoryImage} />
+          <Text style={styles.categoryTitle}>Exercise</Text>
+
+
+          
+          <Text style={styles.categoryTasks}>12 Tasks</Text>
         </View>
-        <Text style={styles.sectionTitle}>Categories</Text>
-        <View style={styles.categories}>
-          <Card style={styles.categoryCard}>
-            <Image source={{ uri: 'https://via.placeholder.com/100' }} style={styles.categoryImage} />
-            <Text style={styles.categoryText}>Exercise</Text>
-            <Text style={styles.taskCount}>12 Tasks</Text>
-          </Card>
-          <Card style={styles.categoryCard}>
-            <Image source={{ uri: 'https://via.placeholder.com/100' }} style={styles.categoryImage} />
-            <Text style={styles.categoryText}>Study</Text>
-            <Text style={styles.taskCount}>12 Tasks</Text>
-          </Card>
+        <View style={styles.category}>
+          <Image source={require('./assets/young woman working at desk.png')} style={styles.categoryImage} />
+          <Text style={styles.categoryTitle}>Study</Text>
+          <Text style={styles.categoryTasks}>12 Tasks</Text>
         </View>
-        <Text style={styles.sectionTitle}>Ongoing Task</Text>
-        <View style={styles.ongoingTask}>
-          <Card style={styles.taskCard}>
-            <Text style={styles.taskText}>Mobile App Development</Text>
-          </Card>
-          <Card style={styles.taskCard}>
-            <Text style={styles.taskText}>Web Development</Text>
-          </Card>
-          <Card style={styles.taskCard}>
-            <Text style={styles.taskText}>Push Ups</Text>
-          </Card>
-        </View>
-      </LinearGradient>
+      </View>
+
+      <Text style={styles.sectionTitle}>Ongoing Task</Text>
+      <View style={styles.task}>
+        <Text>Mobile App Development</Text>
+      </View>
+      <View style={styles.task}>
+        <Text>Web Development</Text>
+      </View>
+      <View style={styles.task}>
+        <Text>Push Ups</Text>
+      </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
-  background: {
-    flex: 1,
+    flexGrow: 1,
     padding: 20,
+    backgroundColor: '#f8f4ee',
   },
   header: {
     flexDirection: 'row',
@@ -70,62 +65,68 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
+  tasks: {
+    color: 'gray',
+  },
   avatar: {
-    backgroundColor: '#f8b400',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
   },
-  taskCount: {
-    marginTop: 5,
-    fontSize: 16,
-    color: '#555',
-  },
-  searchContainer: {
+  searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 20,
-    marginBottom: 20,
+    marginVertical: 20,
   },
   searchInput: {
     flex: 1,
-    height: 40,
-    borderColor: '#ccc',
+    padding: 10,
     borderWidth: 1,
-    borderRadius: 20,
-    paddingHorizontal: 10,
+    borderColor: '#ccc',
+    borderRadius: 10,
   },
   filterButton: {
     marginLeft: 10,
+    padding: 10,
+    backgroundColor: '#ff6347',
+    borderRadius: 10,
+  },
+  filterIcon: {
+    width: 20,
+    height: 20,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginVertical: 10,
   },
   categories: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  categoryCard: {
-    width: '48%',
-    padding: 10,
+  category: {
+    flex: 1,
     alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 15,
+    padding: 10,
+    margin: 5,
   },
   categoryImage: {
-    width: 100,
-    height: 100,
+    width: 50,
+    height: 50,
   },
-  categoryText: {
-    marginTop: 10,
+  categoryTitle: {
     fontSize: 16,
     fontWeight: 'bold',
   },
-  ongoingTask: {
-    marginTop: 20,
+  categoryTasks: {
+    color: 'gray',
   },
-  taskCard: {
+  task: {
+    backgroundColor: 'white',
+    borderRadius: 15,
     padding: 20,
-    marginBottom: 10,
-  },
-  taskText: {
-    fontSize: 16,
+    marginVertical: 5,
   },
 });
